@@ -1,0 +1,263 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #7c3aed;
+    --secondary-color: #f5f3ff;
+    --dark-color: #2e1065;
+    --text-color: #555555;
+    --white: #ffffff;
+    --shadow: 0 8px 20px rgba(124, 58, 237, 0.2);
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+
+header {
+    background: var(--white);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+}
+
+nav {
+    width: 90%;
+    margin: auto;
+    padding: 18px 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: var(--primary-color);
+    font-size: 30px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--dark-color);
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+}
+.hero {
+    width: 90%;
+    margin: 70px auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-text h1 {
+    font-size: 45px;
+    color: var(--dark-color);
+}
+
+.hero-text span {
+    color: var(--primary-color);
+}
+
+.hero-text h3 {
+    margin: 15px 0;
+    color: var(--primary-color);
+}
+
+.hero-text p {
+    margin-bottom: 25px;
+}
+
+.hero-text button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.hero-text button:hover {
+    background: #1d4ed8;
+    transform: translateY(-3px);
+}
+.hero-image {
+    flex: 1;
+    text-align: center;
+}
+
+.hero-image img {
+    width: 320px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid var(--primary-color);
+    box-shadow: var(--shadow);
+}
+
+section {
+    width: 90%;
+    margin: 70px auto;
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    font-size: 35px;
+}
+.about p {
+    text-align: center;
+    max-width: 800px;
+    margin: auto;
+}
+
+.skill-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.skill-box div {
+    background: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    transition: .3s;
+    font-weight: bold;
+}
+
+.skill-box div:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: scale(1.05);
+}
+
+.project-container {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.project-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: .3s;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+}
+
+.project-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.contact {
+    text-align: center;
+}
+
+.contact p {
+    margin-bottom: 10px;
+}
+
+footer {
+    background: var(--dark-color);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+@media(max-width:992px){
+
+    .hero{
+        flex-direction: column-reverse;
+        text-align:center;
+    }
+
+    .project-container{
+        grid-template-columns: repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:768px){
+
+    nav{
+        flex-direction: column;
+        gap:20px;
+    }
+
+    nav ul{
+        flex-wrap: wrap;
+        justify-content:center;
+        gap:15px;
+    }
+
+    .hero-text h1{
+        font-size:35px;
+    }
+
+    .hero-image img{
+        width:250px;
+        height:250px;
+    }
+
+    .project-container{
+        grid-template-columns:1fr;
+    }
+
+    section h2{
+        font-size:28px;
+    }
+
+}
+
+@media(max-width:480px){
+
+    .hero-text h1{
+        font-size:28px;
+    }
+
+    .hero-text button{
+        width:100%;
+    }
+
+    .skill-box div{
+        width:100%;
+        text-align:center;
+    }
+
+}
