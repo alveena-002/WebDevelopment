@@ -1,16 +1,57 @@
-# React + Vite
+# React Vite Setup
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
+This project is a basic React application created using Vite. It demonstrates how to build and organize a React application using reusable components.
 
-Currently, two official plugins are available:
+## Features
+- React project setup with Vite
+- Reusable Header component
+- Reusable Main component
+- Reusable Footer component
+- Basic CSS styling
+- Simple and clean layout
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Project Structure
 
-## React Compiler
+```
+src/
+├── components/
+│   ├── Header.jsx
+│   ├── Main.jsx
+│   └── Footer.jsx
+├── App.jsx
+├── main.jsx
+└── index.css
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Technologies Used
+- React
+- Vite
+- JavaScript
+- CSS
 
-## Expanding the ESLint configuration
+## How to Run the Project
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone the repository
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Start the development server
+
+```bash
+npm run dev
+```
+
+4. Open the URL shown in the terminal (usually http://localhost:5173).
+
+## What I Learned
+- How to create a React project using Vite.
+- How to create reusable React components.
+- How to import and render components in `App.jsx`.
+- How to organize files in a React project.
+- How to apply basic CSS styling.
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/e87e1f76-47b8-426b-9b48-95a45bd04617" />
