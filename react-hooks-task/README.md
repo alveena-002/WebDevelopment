@@ -62,3 +62,12 @@ https://jsonplaceholder.typicode.com/users
 ## What I Learned
 
 In this task, I learned how to use React Hooks (`useState` and `useEffect`). I understood how to manage state, fetch data from an external API, and display dynamic data using the `map()` function. I also learned how React automatically re-renders the UI when the state changes.
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/b02f4de4-d71e-41d3-b548-bf1010c26f49" />
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/f43e4f5a-7691-425c-b89f-bfbb6e7aaee4" />
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/2056f3fb-425c-455f-847d-3013f8d6298b" />
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/280df435-6285-48f5-ae96-cd3c4b38a5a5" />
+
