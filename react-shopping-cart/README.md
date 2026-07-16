@@ -45,3 +45,10 @@ src/
 - Products ko cart me add kiya ja sakta hai.
 - Added products ko remove kiya ja sakta hai.
 - Header aur Cart me total items count display hota hai.
+
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/f1d2954f-cce6-4273-8dc8-9e843b14b0ab" />
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/5a77de4c-b5d8-4b32-a16b-209e5e719de8" />
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/f7e6850e-f75b-4fbd-b624-28374e0e5a9f" />
