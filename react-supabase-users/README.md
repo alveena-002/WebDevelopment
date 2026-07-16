@@ -50,3 +50,7 @@ src/
 - Learned how to use `useEffect` for fetching data when the component loads.
 - Learned how to store data using `useState`.
 - Learned how to display dynamic data in a table using the `map()` function.
+
+
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/cf491940-aa62-47f2-a240-1eab4eef1683" />
