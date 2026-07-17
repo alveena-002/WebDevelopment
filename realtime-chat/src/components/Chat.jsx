@@ -18,13 +18,18 @@ function Chat() {
           table: "messages",
         },
         (payload) => {
-          console.log("Realtime Event:", payload);
-          setMessages((prev) => [...prev, payload.new]);
+          setMessages((prev) => {
+            const alreadyExists = prev.some(
+              (msg) => msg.id === payload.new.id
+            );
+
+            if (alreadyExists) return prev;
+
+            return [...prev, payload.new];
+          });
         }
       )
-      .subscribe((status) => {
-        console.log("Subscription Status:", status);
-      });
+      .subscribe();
 
     return () => {
       supabase.removeChannel(channel);
@@ -37,12 +42,9 @@ function Chat() {
       .select("*")
       .order("id", { ascending: true });
 
-    if (error) {
-      console.log(error);
-      return;
+    if (!error) {
+      setMessages(data);
     }
-
-    setMessages(data);
   }
 
   async function sendMessage() {
@@ -54,12 +56,9 @@ function Chat() {
       },
     ]);
 
-    if (error) {
-      console.log(error);
-      return;
+    if (!error) {
+      setInput("");
     }
-
-    setInput("");
   }
 
   return (
