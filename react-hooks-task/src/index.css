@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.counter button {
+  width: 50px;
+  height: 40px;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  color: white;
+}
+
+.plus {
+  background-color: #22c55e; 
+}
+
+.plus:hover {
+  background-color: #16a34a;
+}
+
+.minus {
+  background-color: #ef4444; 
+}
+
+.minus:hover {
+  background-color: #dc2626;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: white;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
