@@ -1,6 +1,3 @@
-Ye tumhare **Zod Validation API** project ka complete `README.md` hai. Isko copy karke apni project root me **README.md** file me paste kar do.
-
-```md
 # Zod Validation API 🚀
 
 A Node.js and Express.js API project that uses **Zod** for validating incoming user data. This project implements a custom validation middleware to check request data before processing and returns proper validation errors for invalid inputs.
