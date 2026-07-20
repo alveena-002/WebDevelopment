@@ -177,8 +177,7 @@ Alveena Kamal
 
 <img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/93886a00-935d-4a47-88e8-7107bc351f42" />
 
-blob:https://web.whatsapp.com/d48489a0-16b2-44b3-b60f-4278cecf27f6
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/a4ed5990-1355-4694-8b05-514a4b2b778a" />
 
-blob:https://web.whatsapp.com/3c729fc2-6481-4d25-b3df-86b18362d982
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/1613b908-46ef-42d4-884a-2362f01d58ad" />
 
-blob:https://web.whatsapp.com/561605ad-79ab-429a-ba77-a0b5a8faae70
