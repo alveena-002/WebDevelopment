@@ -116,3 +116,5 @@ profile-picture-upload-api
 <img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/accf84eb-0da8-41e5-9579-0df1cf009fbf" />
 
 <img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/049f8433-b5fd-4f61-a9f8-6219fff59423" />
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/877962f7-3567-4e96-b68b-b451906212ad" />
