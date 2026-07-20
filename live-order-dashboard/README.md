@@ -1,16 +1,79 @@
-# React + Vite
+---
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🛒 Live Order Dashboard
 
-Currently, two official plugins are available:
+## 📌 Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This project is a **Live Order Dashboard** built with **React** and **Supabase**. It allows users to add new orders, store them in the Supabase database, and display them instantly using Supabase Realtime.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Features
 
-## Expanding the ESLint configuration
+* Add new orders
+* Display all orders
+* Real-time updates without refreshing the page
+* Connected with Supabase Database
+* Uses React Components and Hooks
+* Responsive and clean UI
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠 Technologies Used
+
+* React (Vite)
+* Supabase
+* JavaScript (ES6)
+* CSS
+
+---
+
+## 📂 Project Structure
+
+```
+src/
+│
+├── components/
+│   ├── AddOrder.jsx
+│   └── OrderList.jsx
+│
+├── App.jsx
+├── App.css
+├── supabase.js
+└── main.jsx
+```
+
+---
+
+## 📖 What I Learned
+
+* How to connect a React application with Supabase.
+* How to insert and fetch data from a database.
+* How to use Supabase Realtime subscriptions.
+* How to manage state using React Hooks.
+* How to build a live dashboard that updates automatically when data changes.
+
+---
+
+## ▶️ Run the Project
+
+```bash
+npm install
+npm run dev
+```
+
+---
+
+## 📸 Output
+
+* Users can add customer orders.
+* Orders are saved in the Supabase database.
+* New orders appear instantly on the dashboard without refreshing the page.
+
+---
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/464f2407-144c-4d96-a155-9b589bc56eb1" />
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/6f1e021b-0353-4522-9a09-c59d7dad949c" />
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/95b4007e-9bae-421d-a229-45f785998a83" />
