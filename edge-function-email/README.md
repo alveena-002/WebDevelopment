@@ -132,3 +132,8 @@ Welcome to our application!
 ## 👩‍💻 Author
 
 **Alveena Kamal**
+
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/2507064a-3ec7-4e05-bcfb-0b1923645487" />
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/c83dacc6-a85e-45ab-8b2e-241cf9e8c3ba" />
