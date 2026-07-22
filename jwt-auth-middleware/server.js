@@ -1,19 +1,37 @@
 import express from "express";
-import cors from "cors";
 import dotenv from "dotenv";
-import authRoutes from "./routes/authRoutes.js";
+import supabase from "./supabase.js";
 
 dotenv.config();
 
 const app = express();
 
-app.use(cors());
 app.use(express.json());
 
-app.use("/api", authRoutes);
+app.get("/", (req, res) => {
+  res.send("Environment Variables API Running 🚀");
+});
+
+app.get("/users", async (req, res) => {
+  const { data, error } = await supabase
+    .from("users")
+    .select("*");
+
+  if (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+
+  res.json({
+    success: true,
+    data,
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
