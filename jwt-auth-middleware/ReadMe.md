@@ -1,7 +1,6 @@
+# JWT Authentication Middleware with Environment Variables
 
-# JWT Auth Middleware
-
-A simple Express.js project that demonstrates how to protect API routes using JSON Web Token (JWT) authentication. The project includes an authentication middleware that verifies JWTs from the `Authorization` header before allowing access to protected routes.
+A simple Express.js project that demonstrates JWT (JSON Web Token) authentication along with secure management of sensitive credentials using Environment Variables. The project protects API routes using JWT middleware and securely stores configuration values such as `JWT_SECRET`, `SUPABASE_URL`, and `SUPABASE_KEY` in a `.env` file.
 
 ---
 
@@ -10,11 +9,15 @@ A simple Express.js project that demonstrates how to protect API routes using JS
 - Express.js server setup
 - JWT authentication using `jsonwebtoken`
 - Custom authentication middleware
-- Protected API route
-- Login route to generate JWT
-- Environment variables with `dotenv`
+- Protected API routes
+- Login route to generate JWT tokens
+- Environment variables using `dotenv`
+- Secure storage of sensitive credentials
+- Supabase integration
+- Fetch data from Supabase database
+- JSON API responses
 - CORS enabled
-- Proper error handling for invalid or missing tokens
+- Proper error handling
 
 ---
 
@@ -32,7 +35,8 @@ jwt-auth-middleware/
 ├── .env
 ├── .gitignore
 ├── package.json
-└── server.js
+├── server.js
+└── supabase.js
 ```
 
 ---
@@ -42,6 +46,7 @@ jwt-auth-middleware/
 - Node.js
 - Express.js
 - JSON Web Token (JWT)
+- Supabase
 - Dotenv
 - CORS
 - Nodemon
@@ -76,7 +81,11 @@ Create a `.env` file in the project root.
 
 ```env
 PORT=5000
-JWT_SECRET=mysecretkey123
+
+JWT_SECRET=your_jwt_secret
+
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_KEY=your-supabase-api-key
 ```
 
 ---
@@ -104,6 +113,22 @@ http://localhost:5000
 ---
 
 ## 📌 API Endpoints
+
+### Home Route
+
+**GET**
+
+```
+/
+```
+
+Response:
+
+```text
+Environment Variables API Running 🚀
+```
+
+---
 
 ### Generate JWT Token
 
@@ -160,6 +185,30 @@ Response:
 
 ---
 
+### Get Users from Supabase
+
+**GET**
+
+```
+/users
+```
+
+Response:
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "name": "Ali"
+    }
+  ]
+}
+```
+
+---
+
 ## ❌ Error Responses
 
 ### Missing Authorization Header
@@ -193,22 +242,33 @@ Response:
 
 ## 📖 How It Works
 
-1. User sends a request to the login endpoint.
-2. The server generates a JWT token.
-3. The client stores the token.
-4. The client sends the token in the `Authorization` header.
-5. The authentication middleware verifies the token.
-6. If the token is valid, access to the protected route is granted.
-7. If the token is missing or invalid, a `401 Unauthorized` response is returned.
+1. Sensitive credentials are stored in the `.env` file.
+2. `dotenv` loads the environment variables.
+3. JWT tokens are generated after successful login.
+4. Protected routes verify the JWT using custom middleware.
+5. `process.env.SUPABASE_URL` and `process.env.SUPABASE_KEY` are used to connect to Supabase securely.
+6. The `/users` endpoint retrieves user data from the Supabase database.
+7. Invalid or missing tokens return appropriate error responses.
+
+---
+
+## 🔒 Security
+
+- Sensitive credentials are stored in the `.env` file.
+- Secrets are accessed using `process.env`.
+- `.env` is excluded from GitHub using `.gitignore`.
+- Protected routes require a valid JWT token.
 
 ---
 
 ## 👩‍💻 Author
 
-Developed as a practice project to understand JWT authentication and middleware implementation in Express.js.
+Developed as a practice project to understand JWT Authentication, Environment Variables, and secure configuration management in Express.js with Supabase.
 
 
 
+<img width="1366" height="728" alt="WhatsApp Image 2026-07-22 at 3 18 50 AM" src="https://github.com/user-attachments/assets/2e3b1786-8939-4b94-9924-53eae30d4dd9" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-07-22 at 3 18 06 AM" src="https://github.com/user-attachments/assets/1ed1f2b2-238d-4740-b721-93b8d8eb4b56" />
 
 <img width="1366" height="728" alt="WhatsApp Image 2026-07-21 at 11 40 47 PM" src="https://github.com/user-attachments/assets/899f1855-9e20-47bc-9033-57de990dfac2" />
 <img width="1366" height="728" alt="WhatsApp Image 2026-07-21 at 11 36 44 PM" src="https://github.com/user-attachments/assets/b77ec69d-cac4-4256-a0d1-89736aee4a24" />
