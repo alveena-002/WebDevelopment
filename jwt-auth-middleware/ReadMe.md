@@ -1,3 +1,4 @@
+
 # JWT Auth Middleware
 
 A simple Express.js project that demonstrates how to protect API routes using JSON Web Token (JWT) authentication. The project includes an authentication middleware that verifies JWTs from the `Authorization` header before allowing access to protected routes.
@@ -205,3 +206,11 @@ Response:
 ## 👩‍💻 Author
 
 Developed as a practice project to understand JWT authentication and middleware implementation in Express.js.
+
+
+
+
+<img width="1366" height="728" alt="WhatsApp Image 2026-07-21 at 11 40 47 PM" src="https://github.com/user-attachments/assets/899f1855-9e20-47bc-9033-57de990dfac2" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-07-21 at 11 36 44 PM" src="https://github.com/user-attachments/assets/b77ec69d-cac4-4256-a0d1-89736aee4a24" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-07-21 at 11 43 55 PM" src="https://github.com/user-attachments/assets/f73a1a2d-06ac-4947-85be-d9b03b710388" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-07-21 at 11 44 17 PM" src="https://github.com/user-attachments/assets/45ee89ba-88c1-45f8-b8a1-97cae916dbb7" />
