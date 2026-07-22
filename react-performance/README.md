@@ -130,3 +130,13 @@ npm run dev
 ## 👨‍💻 Author
 
 Developed as a React performance optimization practice project using React Hooks.
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/58cf5627-c899-40c3-b1d4-c333532a6648" />
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/96f1754e-5f63-41a0-8661-7819ccc94332" />
+
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/a89d515c-39d8-49f8-bb90-761d75a89a8c" />
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/402e77c8-627e-4ca2-8fd1-18f37b5e6fc1" />
+
