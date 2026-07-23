@@ -100,3 +100,11 @@ The application displays:
 ## 👩‍💻 Author
 
 Developed using React and Supabase for learning Advanced SQL relationships and search functionality.
+
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/aa27f9bb-24cd-4aa0-82ff-5f6d6e21a7a7" />
+
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/f73fa000-9073-44cc-b97d-1763e273617f" />
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/3048972a-5d35-40ba-932a-8c479a0c99d5" />
