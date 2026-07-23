@@ -133,3 +133,5 @@ Through this project, Stripe Checkout integration was implemented with an Expres
 <img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/b2dcb705-b81b-4bb2-9ae0-5129e40dc9b8" />
 
 <img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/ec83ee71-e075-4a32-b7bd-5b8eb851995e" />
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/84ff8679-bd07-4c65-920b-8a831d3715dd" />
