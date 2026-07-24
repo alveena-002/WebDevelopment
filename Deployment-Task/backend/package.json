@@ -2,9 +2,6 @@
   "name": "backend",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "node api/index.js"
-  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0"
