@@ -1,3 +1,4 @@
+
 # Testing with Vitest (React + Express)
 
 ## 📌 Project Overview
@@ -185,3 +186,6 @@ Tests 1 passed
 ## 👩‍💻 Author
 
 Developed as a practice project for learning unit testing in React and Express using Vitest.
+
+<img width="1366" height="729" alt="WhatsApp Image 2026-07-27 at 12 37 39 AM" src="https://github.com/user-attachments/assets/15e601c9-df56-4ca0-a5f5-b00fc6c0c18b" />
+<img width="1366" height="729" alt="WhatsApp Image 2026-07-27 at 12 48 56 AM" src="https://github.com/user-attachments/assets/2c823614-8fe9-4661-bb50-be3c1cb4048c" />
