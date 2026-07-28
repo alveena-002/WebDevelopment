@@ -174,3 +174,7 @@ Example log:
 ## Author
 
 Developed as part of an Express.js backend learning project demonstrating global error handling and file-based logging with Winston.
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/4667dd0d-30d4-4a6f-8cf4-0711360f09f0" />
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/6d5098e7-fe34-404e-bfcc-11e2c5a6c8fe" />
