@@ -1,3 +1,7 @@
+live link
+
+https://edumanage-project.vercel.app/
+
 # EduManage — Student Assignments & Attendance Management
 
 A production-ready full-stack web app for managing student assignments and attendance at an
@@ -172,5 +176,15 @@ Use freely for your institute's project.
 <img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/5a7be4f4-3d0c-4611-a568-e6e2d04d70fa" />
 
 <img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/1bcb630f-fa5f-4773-8106-b1a544a203bd" />
+
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/21bdba4f-b381-45b3-994b-51e6671710a9" />
+
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/9bfce46d-568e-4a8b-a261-c7dcaa8abf58" />
+
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/d19f4ef8-77a2-4aea-aa17-d20ea22f2779" />
+
 
 
