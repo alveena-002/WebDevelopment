@@ -1,3 +1,4 @@
+
 # Kanban Board UI with Drag-and-Drop
 
 ## Project Overview
@@ -250,3 +251,16 @@ Supabase stores all tasks with the following fields:
 # Author
 
 Developed as part of the **Full Stack Web Development Capstone Project** using **React, Express.js, and Supabase**.
+
+
+
+<img width="1366" height="728" alt="WhatsApp Image 2026-07-31 at 4 17 16 AM" src="https://github.com/user-attachments/assets/36d97445-e075-431f-a403-4ec7fa396876" />
+<img width="1366" height="728" alt="image (7)" src="https://github.com/user-attachments/assets/d7ba8750-4c83-48e8-a373-ac531f17c232" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-07-31 at 4 14 20 AM" src="https://github.com/user-attachments/assets/5c5a822b-a814-4ab7-9131-95b07a92af05" />
+<img width="1366" height="728" alt="image (6)" src="https://github.com/user-attachments/assets/38e1c6fc-eeb7-4e7a-a538-8ea6f0274c7e" />
+<img width="1366" height="728" alt="image (5)" src="https://github.com/user-attachments/assets/63315ab3-fda4-44c7-920a-964eda0a8b5e" />
+<img width="1366" height="728" alt="image (4)" src="https://github.com/user-attachments/assets/4a9a8344-8c10-4621-acf9-a484294ad085" />
+<img width="1366" height="728" alt="image (3)" src="https://github.com/user-attachments/assets/5de547c5-9d1a-4e43-80c7-a69bb36b491d" />
+<img width="1366" height="728" alt="image (2)" src="https://github.com/user-attachments/assets/5ee4fa09-34d5-4daa-aad8-2e451bc96dce" />
+<img width="1366" height="728" alt="image (1)" src="https://github.com/user-attachments/assets/4389702f-4db3-42ad-a67a-53521dd195c5" />
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/5626d3ad-9f50-4391-8fd3-ce2318e38cb4" />
