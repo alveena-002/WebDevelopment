@@ -130,3 +130,11 @@ Users → Boards → Lists → Tasks
 ## 👩‍💻 Author
 
 **Alveena Kamal**
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/625afd69-f9b3-49ad-8263-d3dac1837d19" />
+
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/53db9be5-fd6a-43dd-8723-20a9d8cb34c0" />
+
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/34f428ab-b9ff-4e42-845b-63edb6bf1bc7" />
