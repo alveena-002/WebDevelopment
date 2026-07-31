@@ -6,6 +6,7 @@ import { studentProfileSchema, type StudentProfileInput } from "./schemas";
 import { studentsApi } from "@/api/studentsApi";
 import { coursesApi, batchesApi } from "@/api/coursesApi";
 import { supabase } from "@/lib/supabase";
+import { activityApi } from "@/api/activityApi";
 import { useAuthStore } from "@/store/authStore";
 import type { Course, Batch } from "@/types";
 import { Button } from "@/components/ui/button";
@@ -79,6 +80,7 @@ export function CompleteProfileForm({ onComplete }: { onComplete: () => void }) 
         profile_id: profile.id,
         ...studentFields,
       });
+      await activityApi.log(profile.id, `${profile.full_name} joined as a student`);
       toast.success("Profile completed");
       onComplete();
     } catch (err) {

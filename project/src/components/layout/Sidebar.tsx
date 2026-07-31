@@ -19,6 +19,7 @@ const navByRole: Record<string, { to: string; label: string; icon: any }[]> = {
     { to: "/users", label: "Manage Users", icon: Users },
     { to: "/courses", label: "Courses & Batches", icon: BookOpen },
     { to: "/reports", label: "Reports", icon: BarChart3 },
+    { to: "/notifications", label: "Notifications", icon: Bell },
     { to: "/settings", label: "Settings", icon: Settings },
   ],
   admin: [
@@ -28,6 +29,7 @@ const navByRole: Record<string, { to: string; label: string; icon: any }[]> = {
     { to: "/assignments", label: "Assignments", icon: ClipboardCheck },
     { to: "/attendance", label: "Attendance", icon: CalendarCheck },
     { to: "/reports", label: "Reports", icon: BarChart3 },
+    { to: "/notifications", label: "Notifications", icon: Bell },
     { to: "/settings", label: "Settings", icon: Settings },
   ],
   teacher: [
@@ -40,7 +42,6 @@ const navByRole: Record<string, { to: string; label: string; icon: any }[]> = {
   ],
   student: [
     { to: "/dashboard", label: "Overview", icon: LayoutDashboard },
-    { to: "/profile", label: "My Profile", icon: Users },
     { to: "/assignments", label: "Assignments", icon: ClipboardCheck },
     { to: "/attendance", label: "My Attendance", icon: CalendarCheck },
     { to: "/notifications", label: "Notifications", icon: Bell },

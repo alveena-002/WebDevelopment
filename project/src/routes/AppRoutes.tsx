@@ -16,6 +16,10 @@ import AssignmentsPage from "@/features/assignments/AssignmentsPage";
 import AttendancePage from "@/features/attendance/AttendancePage";
 import StudentsPage from "@/features/students/StudentsPage";
 import CoursesPage from "@/features/courses/CoursesPage";
+import SettingsPage from "@/features/settings/SettingsPage";
+import NotificationsPage from "@/features/notifications/NotificationsPage";
+import UsersPage from "@/features/users/UsersPage";
+import ReportsPage from "@/features/reports/ReportsPage";
 
 export function AppRoutes() {
   return (
@@ -39,6 +43,8 @@ export function AppRoutes() {
 
           <Route element={<ProtectedRoute allowedRoles={["admin", "super_admin"]} />}>
             <Route path="/courses" element={<CoursesPage />} />
+            <Route path="/users" element={<UsersPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
           </Route>
 
           <Route
@@ -52,6 +58,8 @@ export function AppRoutes() {
           >
             <Route path="/assignments" element={<AssignmentsPage />} />
             <Route path="/attendance" element={<AttendancePage />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/notifications" element={<NotificationsPage />} />
           </Route>
         </Route>
       </Route>

@@ -28,20 +28,25 @@ export default function AdminDashboard() {
   useEffect(() => {
     const load = async () => {
       setLoading(true);
-      const [students, teachers, pending, submitted, activityLog] = await Promise.all([
+      const [students, teachers, pending, submitted, activityLog, attendanceAll, attendancePresent] = await Promise.all([
         supabase.from("students").select("*", { count: "exact", head: true }),
         supabase.from("teachers").select("*", { count: "exact", head: true }),
         supabase.from("assignment_submissions").select("*", { count: "exact", head: true }).eq("status", "pending"),
         supabase.from("assignment_submissions").select("*", { count: "exact", head: true }).eq("status", "submitted"),
         supabase.from("activity_logs").select("id, action, created_at").order("created_at", { ascending: false }).limit(6),
+        supabase.from("attendance").select("*", { count: "exact", head: true }),
+        supabase.from("attendance").select("*", { count: "exact", head: true }).eq("status", "present"),
       ]);
+
+      const totalAttendance = attendanceAll.count ?? 0;
+      const presentCount = attendancePresent.count ?? 0;
 
       setStats({
         totalStudents: students.count ?? 0,
         totalTeachers: teachers.count ?? 0,
         pendingAssignments: pending.count ?? 0,
         submittedAssignments: submitted.count ?? 0,
-        attendanceRate: 0,
+        attendanceRate: totalAttendance > 0 ? Math.round((presentCount / totalAttendance) * 100) : 0,
       });
       setActivity((activityLog.data as ActivityItem[]) ?? []);
       setLoading(false);
@@ -82,7 +87,7 @@ export default function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <p className="text-3xl font-semibold">{stats?.attendanceRate ?? 0}%</p>
-            <p className="text-sm text-muted-foreground">Average attendance across all batches this month.</p>
+            <p className="text-sm text-muted-foreground">Percentage of "Present" across all recorded attendance.</p>
           </CardContent>
         </Card>
 

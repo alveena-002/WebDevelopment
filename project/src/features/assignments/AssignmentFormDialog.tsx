@@ -19,6 +19,9 @@ import { assignmentSchema, type AssignmentInput } from "./schemas";
 import { assignmentsApi } from "@/api/assignmentsApi";
 import { coursesApi, batchesApi } from "@/api/coursesApi";
 import { teachersApi } from "@/api/teachersApi";
+import { activityApi } from "@/api/activityApi";
+import { notificationsApi } from "@/api/notificationsApi";
+import { studentsApi } from "@/api/studentsApi";
 import { useAuthStore } from "@/store/authStore";
 import type { Course, Batch, Assignment } from "@/types";
 import { Loader2, Upload, FileText } from "lucide-react";
@@ -111,6 +114,7 @@ export function AssignmentFormDialog({ open, onOpenChange, onSaved, assignment }
           attachmentUrls = [...attachmentUrls, ...uploaded];
           await assignmentsApi.update(updated.id, { attachment_urls: attachmentUrls });
         }
+        await activityApi.log(profile.id, `${profile.full_name} updated assignment "${values.title}"`);
         toast.success("Assignment updated");
       } else {
         const teacherRecord = await teachersApi.getByProfileId(profile.id);
@@ -129,6 +133,24 @@ export function AssignmentFormDialog({ open, onOpenChange, onSaved, assignment }
           const uploaded = await Promise.all(files.map((f) => assignmentsApi.uploadAttachment(f, created.id)));
           await assignmentsApi.update(created.id, { attachment_urls: uploaded });
         }
+        await activityApi.log(profile.id, `${profile.full_name} created assignment "${values.title}"`);
+
+        // Notify every student in the batch about the new assignment.
+        try {
+          const batchStudents = await studentsApi.list(values.batch_id);
+          await Promise.all(
+            batchStudents.map((s) =>
+              notificationsApi.create({
+                user_id: s.profile_id,
+                title: "New assignment posted",
+                message: `${values.title} is due ${new Date(values.due_date).toLocaleDateString()}.`,
+              })
+            )
+          );
+        } catch {
+          // Notifications are best-effort; don't block assignment creation on failure.
+        }
+
         toast.success("Assignment created");
       }
 

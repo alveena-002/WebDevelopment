@@ -90,31 +90,59 @@ npm run build   # sanity-check the production build locally
    - `VITE_SUPABASE_ANON_KEY`
 5. Deploy. Update your Supabase Auth redirect URLs to include the new Vercel domain.
 
-## 4. What's Implemented in This Foundation
+## 4. What's Implemented
 
 - Full Supabase Auth flow: Login, Signup (with role selection), Forgot Password, Reset Password
 - Role-based route protection (`super_admin`, `admin`, `teacher`, `student`)
 - Dashboard shell with Sidebar, Navbar, dark mode toggle, search bar
-- Role-specific dashboards (Admin/Teacher/Student) wired to live Supabase queries
-- Students module with a searchable, paginated TanStack Table
-- Assignments module: list, download attachment, student submission upload, status badges,
-  late-submission indicator
-- Attendance module: roster view with Present/Absent/Late/Leave marking UI
-- Complete normalized SQL schema with foreign keys and Row Level Security policies
-- Loading skeletons, empty states, and toast notifications throughout
+- Role-specific dashboards (Admin/Teacher/Student) wired to live Supabase queries, including
+  attendance rate and per-teacher class/student/assignment counts
+- **Courses & Batches** management (Admin) — add courses, add batches, assign teachers to batches
+- **Students module** — searchable, paginated table with full profile (photo, father name, phone,
+  address, application ID, course, batch, enrollment date) and a detail view dialog. Students
+  complete their own profile (with photo upload) on first login.
+- **Assignments module** — full Create/Edit/Delete form (course + batch selection, due date,
+  PDF/image upload), course/batch filters, student submission flow with file upload and remarks,
+  automatic late-submission detection, status badges, and a **grading view** for teachers
+  (per-student submission list with file download and grade entry)
+- **Attendance module** — teacher selects a batch + date, loads the real class roster, marks
+  Present/Absent/Late/Leave, saves to Supabase; a 30-day per-student attendance % report renders
+  below the roster; students see their own attendance history
+- **Manage Users** (Admin) — view all users, change roles
+- **Reports** — live counts (students, assignments, submissions, attendance records) plus CSV
+  export for Students, Assignments, and Attendance
+- **Settings** — edit profile + photo, change password, theme toggle
+- **Notifications** — auto-created when a new assignment is posted (to the batch's students), when
+  a student submits (to the assignment's teacher), and when a submission is graded (to the
+  student); list view with mark as read / mark all as read
+- **Activity Log** — real actions (student joined, assignment created/updated, attendance marked,
+  submissions) feed the Admin dashboard's Recent Activity panel
+- Loading skeletons, empty states, retry-able error states, and toast notifications throughout
 
 ## 5. Suggested Next Steps
 
-This is a solid, working foundation — not the entire feature list from the spec. To take it
-further:
+This covers the full feature list from the original spec at a working level. A few things worth
+polishing before a real production rollout:
 
-- Wire up Create/Edit/Delete Assignment forms (dialog + react-hook-form + zod) for teachers/admins
-- Build the batch-aware attendance roster (currently the UI is ready, batch selection needs wiring)
-- Add Admin pages: Manage Users, Manage Roles, Manage Courses/Batches, CSV export, Reports charts
-- Add Settings page (Profile edit, Change Password, Notification preferences)
-- Add Supabase Edge Functions if you need server-side logic (e.g. sending email notifications
-  on new assignments)
+- Bulk student import (CSV) for admins, instead of one-by-one self-signup
+- Supabase Edge Functions for server-side logic (e.g. emailing on new assignment)
+- Code-splitting (the bundle is a single ~775KB chunk — fine for a student project, but worth
+  splitting with `React.lazy()` per route before a larger production deployment)
 - Generate real Supabase types: `npx supabase gen types typescript --project-id <id> > src/types/database.ts`
+
+## 6. Known one-time setup gotchas
+
+If you signed up teacher/student accounts **before** applying the latest schema, their
+`teachers` / `students` rows may not exist yet (older code paths didn't create them). If a
+teacher gets "Only users with a teacher profile can create assignments," or a student's profile
+won't save, run:
+
+```sql
+-- backfill a missing teacher row
+insert into teachers (profile_id) select id from profiles where email = 'the-email@example.com';
+```
+
+New signups after this schema don't need this — it's handled automatically.
 
 ## License
 

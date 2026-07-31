@@ -31,6 +31,17 @@ export const attendanceApi = {
     if (error) throw error;
     return data as unknown as AttendanceRecord[];
   },
+
+  batchReport: async (batchId: string, from: string, to: string) => {
+    const { data, error } = await supabase
+      .from("attendance")
+      .select("*")
+      .eq("batch_id", batchId)
+      .gte("date", from)
+      .lte("date", to);
+    if (error) throw error;
+    return data as unknown as AttendanceRecord[];
+  },
 };
 
 export const attendanceStatusLabel: Record<AttendanceStatus, string> = {

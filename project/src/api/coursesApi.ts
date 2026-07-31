@@ -28,3 +28,22 @@ export const batchesApi = {
     return data as unknown as Batch;
   },
 };
+
+export const teacherBatchesApi = {
+  listForBatch: async (batchId: string) => {
+    const { data, error } = await supabase
+      .from("teacher_batches")
+      .select("teacher_id, teachers(id, profiles(full_name))")
+      .eq("batch_id", batchId);
+    if (error) throw error;
+    return data;
+  },
+  assign: async (teacherId: string, batchId: string) => {
+    const { error } = await supabase.from("teacher_batches").insert({ teacher_id: teacherId, batch_id: batchId });
+    if (error) throw error;
+  },
+  unassign: async (teacherId: string, batchId: string) => {
+    const { error } = await supabase.from("teacher_batches").delete().eq("teacher_id", teacherId).eq("batch_id", batchId);
+    if (error) throw error;
+  },
+};

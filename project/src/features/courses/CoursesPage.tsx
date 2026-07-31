@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { coursesApi, batchesApi } from "@/api/coursesApi";
-import type { Course, Batch } from "@/types";
+import { coursesApi, batchesApi, teacherBatchesApi } from "@/api/coursesApi";
+import { teachersApi } from "@/api/teachersApi";
+import type { Course, Batch, TeacherProfile, Profile } from "@/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { toast } from "sonner";
-import { BookOpen, Plus, Layers } from "lucide-react";
+import { BookOpen, Plus, Layers, UserPlus } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -20,6 +21,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 export default function CoursesPage() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [batches, setBatches] = useState<Batch[]>([]);
+  const [teachers, setTeachers] = useState<(TeacherProfile & { profiles: Profile })[]>([]);
   const [loading, setLoading] = useState(true);
 
   const [courseDialogOpen, setCourseDialogOpen] = useState(false);
@@ -32,15 +34,21 @@ export default function CoursesPage() {
   const [batchTiming, setBatchTiming] = useState("");
   const [batchStart, setBatchStart] = useState("");
 
+  const [assignDialogOpen, setAssignDialogOpen] = useState(false);
+  const [assignBatch, setAssignBatch] = useState<Batch | null>(null);
+  const [assignTeacherId, setAssignTeacherId] = useState("");
+
   const load = async () => {
     setLoading(true);
     try {
-      const [c, b] = await Promise.all([coursesApi.list(), batchesApi.list()]);
+      const [c, b, t] = await Promise.all([coursesApi.list(), batchesApi.list(), teachersApi.list()]);
       setCourses(c);
       setBatches(b);
+      setTeachers(t);
     } catch {
       setCourses([]);
       setBatches([]);
+      setTeachers([]);
     } finally {
       setLoading(false);
     }
@@ -88,6 +96,23 @@ export default function CoursesPage() {
       load();
     } catch {
       toast.error("Could not add batch");
+    }
+  };
+
+  const openAssign = (batch: Batch) => {
+    setAssignBatch(batch);
+    setAssignTeacherId("");
+    setAssignDialogOpen(true);
+  };
+
+  const handleAssignTeacher = async () => {
+    if (!assignBatch || !assignTeacherId) return;
+    try {
+      await teacherBatchesApi.assign(assignTeacherId, assignBatch.id);
+      toast.success("Teacher assigned to batch");
+      setAssignDialogOpen(false);
+    } catch {
+      toast.error("Could not assign teacher (they may already be assigned to this batch)");
     }
   };
 
@@ -146,8 +171,13 @@ export default function CoursesPage() {
               <ul className="space-y-2">
                 {batches.map((b) => (
                   <li key={b.id} className="flex items-center justify-between rounded-md border px-3 py-2 text-sm">
-                    <span>{b.name}</span>
-                    <span className="text-muted-foreground">{b.timing}</span>
+                    <div>
+                      <span>{b.name}</span>
+                      <span className="ml-2 text-muted-foreground">{b.timing}</span>
+                    </div>
+                    <Button variant="ghost" size="sm" onClick={() => openAssign(b)}>
+                      <UserPlus className="h-4 w-4" /> Assign Teacher
+                    </Button>
                   </li>
                 ))}
               </ul>
@@ -213,6 +243,35 @@ export default function CoursesPage() {
           <DialogFooter>
             <Button variant="outline" onClick={() => setBatchDialogOpen(false)}>Cancel</Button>
             <Button onClick={handleAddBatch}>Add batch</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={assignDialogOpen} onOpenChange={setAssignDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Assign Teacher to {assignBatch?.name}</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3">
+            <Label>Teacher</Label>
+            <Select onValueChange={setAssignTeacherId} value={assignTeacherId}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select teacher" />
+              </SelectTrigger>
+              <SelectContent>
+                {teachers.length === 0 ? (
+                  <div className="px-3 py-2 text-sm text-muted-foreground">No teacher accounts yet</div>
+                ) : (
+                  teachers.map((t) => (
+                    <SelectItem key={t.id} value={t.id}>{t.profiles?.full_name}</SelectItem>
+                  ))
+                )}
+              </SelectContent>
+            </Select>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setAssignDialogOpen(false)}>Cancel</Button>
+            <Button onClick={handleAssignTeacher} disabled={!assignTeacherId}>Assign</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
