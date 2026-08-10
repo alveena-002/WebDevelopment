@@ -1,0 +1,103 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@theme {
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  
+  /* Brand Colors */
+  --color-ink: #0B0D12;
+  --color-ivory: #F8F3E9;
+  --color-gold: #C9A227;
+  --color-pomegranate: #7A1F2B;
+  --color-sage: #3E4C4B;
+  --color-stone: #D8D2C4;
+  
+  /* Semantic Colors */
+  --color-background: #0B0D12;
+  --color-foreground: #F8F3E9;
+  --color-card: #1A1D24;
+  --color-muted: #D8D2C4;
+  --color-gold-accent: #C9A227;
+  
+  /* Border Radius */
+  --radius: 0.75rem;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+
+  code, pre {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer utilities {
+  .bg-gradient-radial {
+    background-image: radial-gradient(var(--tw-gradient-stops));
+  }
+}
+
+@layer components {
+  /* Glowing halo animation for timeline icons */
+  @keyframes halo-pulse {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(201, 162, 39, 0.4), inset 0 0 10px rgba(201, 162, 39, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(201, 162, 39, 0.6), inset 0 0 15px rgba(201, 162, 39, 0.2);
+    }
+  }
+
+  @keyframes fade-slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .timeline-icon-glow {
+    animation: halo-pulse 3s ease-in-out infinite;
+  }
+
+  .timeline-stage-appear {
+    animation: fade-slide-up 0.8s ease-out forwards;
+  }
+
+  .timeline-stage-appear[data-index="0"] {
+    animation-delay: 0s;
+  }
+  .timeline-stage-appear[data-index="1"] {
+    animation-delay: 0.15s;
+  }
+  .timeline-stage-appear[data-index="2"] {
+    animation-delay: 0.3s;
+  }
+  .timeline-stage-appear[data-index="3"] {
+    animation-delay: 0.45s;
+  }
+  .timeline-stage-appear[data-index="4"] {
+    animation-delay: 0.6s;
+  }
+  .timeline-stage-appear[data-index="5"] {
+    animation-delay: 0.75s;
+  }
+}
+
+
