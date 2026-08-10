@@ -1,0 +1,89 @@
+Please Follow below URL for detail online documentation
+https://jampack.hencework.com/documentation/introduction
+
+File Structure
+
+React-Jampack
+│
+├── Clssic
+├── Horizontal
+└── Compact
+    │
+    ├── public
+    ├── src
+    │	│
+    │	├── assets
+    │	│   └── dist
+    │	│	└── img
+    │	│
+    │	├── components
+    │	│   └── All Custom Components
+    │	│
+    │	├── layout
+    │	│   ├── app-layout
+    │	│   ├── auth-layout
+    │	│   ├── footer
+    │	│   ├── header
+    │	│   └── sidebar
+    │	│
+    │	├── redux      /*Global state management*/
+    │	│   ├── action
+    │	│   ├── constants
+    │	│   ├── reducer
+    │	│   └── store
+    │	│
+    │	├── routes      /*Global state management*/
+    │	│   │
+    │	│   └── all apps and auth routes defined here
+    │	│ 
+    │	├── styles
+    │	│   ├── css
+    │	│   ├── fonts
+    │	│   └── scss
+    │	│	├── apps.scss
+    │	│	├── drawer.scss
+    │	│	├── footer.scss
+    │	│	├── header.scss
+    │	│	├── horizontal-menu.scss
+    │	│	├── mixins.scss
+    │	│	├── nav.scss
+    │	│	├── navbar-menu.scss
+    │	│	├── style.scss
+    │	│	├── variables.scss
+    │	│	├── vertical-classic-menu.scss
+    │	│	└── vertical-icon-menu.scss
+    │	│
+    │	├── views
+    │	│   │
+    │	│   └── All jsx pages here
+    │	│
+    │	├── App.jsx  /*root app*/
+    │	│
+    │	└── main.jsx /*entery point*/
+    │
+    ├── .eslintrc.json
+    ├── .gitignore
+    ├── index.html
+    ├── package.json
+    └── README.md
+  
+Installation
+
+1. First of all it's required to Install Node.js 18.x or later and npm / yarn.
+2. Open your favorite console application (Terminal, iTerm, Command Prompt etc.). Navigate to a your favorite project layout folder (classic, horizontal or compact) and Install packages using following commands. This command will install all the required Node.js modules into the node_modules directory inside project folder. And now, you are ready to run the project for the first time.
+
+npm install
+or 
+yarn install
+
+3. Now you can run this React.js project by using following command for your application development, make the necessary changes.
+
+npm run dev
+or 
+yarn dev
+
+4.To builds the app for production you can use next build command. vite build creates an optimized production build of your application. The output displays information about each route.
+
+npm run build
+or 
+yarn build
