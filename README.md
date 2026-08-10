@@ -419,3 +419,6 @@ This project demonstrates a complete SaaS-style Kanban application using React, 
 It combines database management, REST APIs, realtime synchronization, Row Level Security, file storage, and a modern drag-and-drop frontend into one full-stack application.
 
 ``
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/5b715d52-7974-4c8a-bbc5-71edc098efa5" />
+
