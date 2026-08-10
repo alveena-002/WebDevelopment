@@ -1,6 +1,4 @@
-Bilkul 👍 Ye **Tough Final – Complete SaaS (Attachments, Realtime, RLS)** project ke liye complete English `README.md` hai. Isko apne project ke **root folder `kanban-board-ui`** mein `README.md` mein paste kar do.
 
-````md
 # Kanban Board SaaS
 
 A full-stack Kanban Board SaaS application built with React, Express.js, Supabase, and Tailwind CSS.
