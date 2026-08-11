@@ -1,0 +1,35 @@
+{
+  "name": "tradepro360-backend",
+  "version": "1.0.0",
+  "description": "TradePro 360 — booking, AI dispatch, live tracking, payments and admin API",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node --no-warnings src/server.js",
+    "dev": "node --no-warnings --watch src/server.js"
+  },
+  "keywords": [
+    "tradepro360",
+    "dispatch",
+    "booking"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1103.0",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.6.2",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "pdfkit": "^0.19.1",
+    "pg": "^8.22.0",
+    "socket.io": "^4.8.3",
+    "stripe": "^22.4.0",
+    "uuid": "^14.0.1"
+  }
+}

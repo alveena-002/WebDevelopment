@@ -1,0 +1,49 @@
+TRADEPRO 360 — MERGED PROJECT PACKAGE
+=======================================
+
+This merges two work sessions: the application layer (booking, dispatch,
+tracking, chat, invoicing, payments, auth, the engineer app) and the
+infrastructure layer (PostgreSQL, Docker, real ETA, S3 storage,
+production hardening). Everything below was re-verified during the merge.
+
+Read TradePro360-Project-Status.docx first — it lists exactly what's
+done (and how it was verified) vs. what's still genuinely remaining.
+
+Requires Node.js 22.5.0 or newer (node --version to check).
+
+Files in this package:
+
+1. TradePro360.html
+   Customer + owner app. Open it in a browser. Works standalone (local
+   demo mode), or connects live to /backend if that server is running.
+   Admin dashboard requires a real login (see backend/README.md for
+   demo credentials).
+
+2. TradePro360-Engineer.html
+   Real mobile-first app for engineers — login, see assigned job,
+   update status, share live GPS, chat with the customer.
+
+3. backend/
+   The real API. Zero-setup default:
+     cd backend
+     npm install
+     npm start
+   Runs on SQLite. Set DATABASE_URL to run on PostgreSQL instead — see
+   backend/README.md and backend/.env.production.example.
+
+4. docker-compose.yml + backend/Dockerfile
+   Containerised local dev (API + Postgres) and a production image.
+   NOTE: written to standard conventions and syntax-checked, but not
+   run end to end (no Docker daemon was available while building this)
+   — run `docker compose up` once yourself before relying on it.
+
+5. DEPLOYMENT.md
+   Concrete steps to a real public URL on Render.
+
+6. TradePro360-Architecture.docx
+   Full technical specification.
+
+7. TradePro360-Project-Status.docx
+   Itemised checklist: what's done, how it was verified, and what's
+   genuinely still remaining (all external accounts/credentials, plus
+   the one-time Docker verification step).

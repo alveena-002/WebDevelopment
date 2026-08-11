@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+tradepro360.db
+tradepro360.db-shm
+tradepro360.db-wal
+uploads
+.env
+.env.local
+.git

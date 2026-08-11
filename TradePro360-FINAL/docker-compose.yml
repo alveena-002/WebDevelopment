@@ -1,0 +1,61 @@
+# TradePro 360 — local development stack.
+#
+#   docker compose up            # Postgres + API, both containerised
+#   docker compose up postgres   # just the DB, run the API with `npm start` on the host
+#
+# The API defaults to demo-mode env vars so the whole stack is usable
+# with zero external credentials. Override via a .env file at the repo
+# root (docker compose reads it automatically) or `docker compose run -e`.
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    container_name: tradepro360-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-tradepro}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-tradepro}
+      POSTGRES_DB: ${POSTGRES_DB:-tradepro360}
+    ports:
+      - '${POSTGRES_PORT:-5432}:5432'
+    volumes:
+      - tradepro360_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-tradepro} -d ${POSTGRES_DB:-tradepro360}']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: ./backend
+    container_name: tradepro360-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - '${PORT:-4000}:4000'
+    environment:
+      PORT: 4000
+      DATABASE_URL: postgresql://${POSTGRES_USER:-tradepro}:${POSTGRES_PASSWORD:-tradepro}@postgres:5432/${POSTGRES_DB:-tradepro360}
+      JWT_SECRET: ${JWT_SECRET:-dev-secret-change-in-production}
+      CORS_ORIGIN: ${CORS_ORIGIN:-}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
+      GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY:-}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+      AWS_REGION: ${AWS_REGION:-}
+      AWS_S3_BUCKET: ${AWS_S3_BUCKET:-}
+      AWS_S3_ENDPOINT: ${AWS_S3_ENDPOINT:-}
+      AWS_S3_FORCE_PATH_STYLE: ${AWS_S3_FORCE_PATH_STYLE:-}
+      AWS_S3_PUBLIC_URL_BASE: ${AWS_S3_PUBLIC_URL_BASE:-}
+      PUBLIC_URL: ${PUBLIC_URL:-}
+    volumes:
+      # Only actually used when AWS_S3_BUCKET is unset (local-disk photo
+      # fallback) — persists uploads across container restarts either way.
+      - tradepro360_uploads:/app/uploads
+
+volumes:
+  tradepro360_pgdata:
+  tradepro360_uploads:

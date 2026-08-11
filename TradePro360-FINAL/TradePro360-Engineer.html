@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>TradePro 360 — Engineer App</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
+:root{
+  --ink:#14213D; --ink-soft:#1F3157; --paper:#F5F3EE; --card:#FFFFFF; --line:#E2DED3;
+  --slate:#5C6672; --amber:#FF9F1C; --amber-deep:#E08A00; --teal:#0F8B8D; --teal-soft:#E4F3F3;
+  --success:#2E7D46; --danger:#C0392B;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif; margin:0;}
+.mono{font-family:'JetBrains Mono',monospace;}
+button{font-family:inherit; cursor:pointer;}
+
+#connBanner{display:flex; align-items:center; gap:8px; padding:7px 14px; background:var(--ink); color:#B9C2D6; font-family:'JetBrains Mono',monospace; font-size:11px;}
+#connDot{width:7px; height:7px; border-radius:50%; background:var(--danger); flex-shrink:0;}
+
+.wrap{max-width:480px; margin:0 auto; padding:18px 16px 60px;}
+.topline{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;}
+.brand{display:flex; align-items:center; gap:8px;}
+.brand .box{width:30px; height:30px; border-radius:7px; background:var(--amber); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:700; color:var(--ink); font-size:12px;}
+.brand .name{font-family:'Space Grotesk'; font-weight:700; font-size:15px;}
+.logout{background:none; border:1px solid var(--line); color:var(--slate); font-size:12px; padding:6px 10px; border-radius:7px;}
+
+.card{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px; box-shadow:0 1px 2px rgba(20,33,61,.06), 0 8px 20px -10px rgba(20,33,61,.15); margin-bottom:14px;}
+label{display:block; font-size:12px; font-weight:600; color:var(--slate); text-transform:uppercase; letter-spacing:.03em; margin-bottom:6px;}
+input{width:100%; padding:12px; border:1.5px solid var(--line); border-radius:8px; font-size:15px; font-family:inherit; background:#FCFBF8; margin-bottom:14px;}
+input:focus{outline:none; border-color:var(--teal); background:#fff;}
+.btn{border:none; border-radius:9px; padding:13px 16px; font-weight:700; font-size:14.5px; width:100%; display:flex; align-items:center; justify-content:center; gap:8px;}
+.btn-primary{background:var(--amber); color:var(--ink);}
+.btn-primary:disabled{background:#E7E2D6; color:#A9A08C;}
+.btn-outline{background:transparent; border:1.5px solid var(--line); color:var(--ink);}
+.btn-danger{background:#FBEAE7; color:var(--danger);}
+.hint{font-size:12px; color:var(--slate); line-height:1.5; margin-top:6px;}
+.err{background:#FBEAE7; color:var(--danger); border-radius:8px; padding:9px 12px; font-size:13px; margin-bottom:12px; font-weight:600;}
+
+.demo-creds{background:var(--teal-soft); border-radius:8px; padding:12px; font-size:12px; color:var(--teal); line-height:1.6; margin-top:8px;}
+.demo-creds b{font-family:'JetBrains Mono';}
+
+.job-empty{text-align:center; padding:40px 10px; color:var(--slate);}
+.job-empty .big{font-size:34px; margin-bottom:8px;}
+
+.badge{display:inline-block; padding:5px 11px; border-radius:100px; font-size:11.5px; font-weight:700;}
+.badge.dispatched{background:var(--teal-soft); color:var(--teal);}
+.badge.enroute{background:#FDF1DC; color:#A8710B;}
+.badge.progress{background:#E7EEFB; color:#2A5DBB;}
+.badge.done{background:#E5F3E8; color:var(--success);}
+
+.job-title{font-size:19px; font-weight:700; margin:10px 0 2px;}
+.job-sub{font-size:13.5px; color:var(--slate);}
+.job-row{display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--line); font-size:13.5px;}
+.job-row:last-child{border-bottom:none;}
+.job-row .k{color:var(--slate);}
+.job-row .v{font-weight:600; text-align:right;}
+
+.gps-pill{display:flex; align-items:center; gap:8px; background:var(--teal-soft); color:var(--teal); font-size:12.5px; font-weight:700; padding:9px 12px; border-radius:9px; margin:12px 0;}
+.gps-dot{width:7px; height:7px; border-radius:50%; background:var(--teal); animation:pulse2 1.8s infinite;}
+@keyframes pulse2{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+.chat-window{height:200px; overflow-y:auto; border:1px solid var(--line); border-radius:9px; padding:12px; background:#FCFBF8; display:flex; flex-direction:column; gap:8px; margin-bottom:10px;}
+.msg{max-width:78%; padding:8px 11px; border-radius:11px; font-size:13px; line-height:1.4;}
+.msg.me{background:var(--ink); color:#fff; align-self:flex-end;}
+.msg.them{background:#fff; border:1px solid var(--line); align-self:flex-start;}
+.chat-row{display:flex; gap:8px;}
+.chat-row input{margin-bottom:0; flex:1;}
+.chat-row button{width:auto; padding:0 16px;}
+
+.action-stack{display:flex; flex-direction:column; gap:9px; margin-top:14px;}
+.apibar{display:flex; gap:6px; align-items:center; flex-wrap:wrap;}
+.apibar input{background:#1F3157; border:1px solid #34477A; color:#fff; border-radius:5px; padding:4px 8px; font-size:11px; width:170px; margin:0;}
+.apibar button{background:var(--amber); border:none; color:var(--ink); font-weight:700; border-radius:5px; padding:4px 9px; font-size:11px; width:auto;}
+</style>
+</head>
+<body>
+
+<div id="connBanner">
+  <span id="connDot"></span>
+  <span id="connText">Checking backend…</span>
+  <span style="flex:1;"></span>
+  <div class="apibar">
+    <input id="apiBaseInput" type="text" value="http://localhost:4000">
+    <button id="apiBaseBtn">Reconnect</button>
+  </div>
+</div>
+
+<div class="wrap" id="app"></div>
+
+<script>
+let API_BASE = 'http://localhost:4000';
+let backendOnline = false;
+let token = null;
+let currentUser = null;
+let myBookings = [];
+let activeBooking = null;
+let chat = [];
+let watchId = null;
+let sharingLocation = false;
+
+const $ = s => document.querySelector(s);
+const el = (tag, cls, html) => { const n=document.createElement(tag); if(cls) n.className=cls; if(html!==undefined) n.innerHTML=html; return n; };
+const fmtGBP = n => '£' + Number(n).toFixed(2);
+
+async function api(path, opts={}){
+  const headers = Object.assign({'Content-Type':'application/json'}, opts.headers||{});
+  if(token) headers['Authorization'] = 'Bearer ' + token;
+  const res = await fetch(`${API_BASE}${path}`, {...opts, headers});
+  const data = await res.json().catch(()=>({}));
+  if(!res.ok) throw new Error(data.error || 'Request failed');
+  return data;
+}
+
+async function tryConnectBackend(){
+  const dot = $('#connDot'), text = $('#connText');
+  try{
+    const res = await fetch(`${API_BASE}/api/health`, {signal: AbortSignal.timeout(3000)});
+    if(!res.ok) throw new Error('bad response');
+    backendOnline = true;
+    dot.style.background = '#2E7D46';
+    text.textContent = `Connected — ${API_BASE}`;
+  }catch(e){
+    backendOnline = false;
+    dot.style.background = '#C0392B';
+    text.textContent = `No backend at ${API_BASE} — start it with "npm start" in /backend`;
+  }
+  render();
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  $('#apiBaseBtn').onclick = ()=>{ API_BASE = $('#apiBaseInput').value.trim().replace(/\/$/,''); tryConnectBackend(); };
+  tryConnectBackend();
+});
+
+function render(){
+  const app = $('#app');
+  app.innerHTML = '';
+  if(!token){ app.appendChild(loginView()); return; }
+  app.appendChild(topline());
+  if(!backendOnline){
+    app.appendChild(el('div','card hint','Lost connection to the backend — reconnect above to keep working.'));
+    return;
+  }
+  app.appendChild(jobView());
+}
+
+function topline(){
+  const bar = el('div','topline');
+  bar.appendChild(el('div','brand', `<div class="box">T3</div><div class="name">${currentUser ? currentUser.name : 'Engineer'}</div>`));
+  const out = el('button','logout','Log out');
+  out.onclick = ()=>{ token=null; currentUser=null; myBookings=[]; activeBooking=null; stopSharingLocation(); render(); };
+  bar.appendChild(out);
+  return bar;
+}
+
+function loginView(){
+  const wrap = el('div','');
+  wrap.appendChild(el('div','topline','<div class="brand"><div class="box">T3</div><div class="name">Engineer App</div></div>'));
+  const card = el('div','card');
+  card.appendChild(el('h2','','Sign in'));
+  card.appendChild(el('p','hint','Sign in to see your assigned job, update its status, and share your live location with the customer.'));
+
+  const errBox = el('div','');
+  card.appendChild(errBox);
+
+  const emailField = el('div',''); emailField.innerHTML = '<label>Email</label>';
+  const emailInput = el('input'); emailInput.type='email'; emailInput.placeholder='e1@tradepro360.demo'; emailInput.value='e1@tradepro360.demo';
+  emailField.appendChild(emailInput); card.appendChild(emailField);
+
+  const passField = el('div',''); passField.innerHTML = '<label>Password</label>';
+  const passInput = el('input'); passInput.type='password'; passInput.placeholder='••••••••'; passInput.value='demo1234';
+  passField.appendChild(passInput); card.appendChild(passField);
+
+  const btn = el('button','btn btn-primary','Sign in');
+  btn.onclick = async ()=>{
+    errBox.innerHTML = '';
+    btn.disabled = true; btn.textContent = 'Signing in…';
+    try{
+      const data = await api('/api/auth/login', {method:'POST', body: JSON.stringify({email: emailInput.value, password: passInput.value})});
+      token = data.token; currentUser = data.user;
+      await loadMyBookings();
+      render();
+    }catch(e){
+      errBox.appendChild(el('div','err', e.message));
+    }
+    btn.disabled = false; btn.textContent = 'Sign in';
+  };
+  card.appendChild(btn);
+  card.appendChild(el('div','demo-creds', `Demo engineer logins (any of these): <b>e1</b>–<b>e8</b>@tradepro360.demo, password <b>demo1234</b>. Each is pre-linked to a real engineer profile in the database.`));
+  wrap.appendChild(card);
+  return wrap;
+}
+
+async function loadMyBookings(){
+  try{
+    myBookings = await api('/api/bookings/mine');
+    activeBooking = myBookings.find(b=>b.status!=='completed' && b.status!=='cancelled') || null;
+    if(activeBooking){
+      chat = await api(`/api/bookings/${activeBooking.id}/messages`);
+    }
+  }catch(e){ console.warn(e); }
+}
+
+function jobView(){
+  const wrap = el('div','');
+  if(!activeBooking){
+    const card = el('div','card');
+    card.appendChild(el('div','job-empty', `<div class="big">🛠️</div>No job currently assigned.<br><span class="hint">New jobs from the AI dispatcher will appear here automatically.</span>`));
+    const refresh = el('button','btn btn-outline','Refresh'); refresh.style.marginTop='10px';
+    refresh.onclick = async ()=>{ await loadMyBookings(); render(); };
+    card.appendChild(refresh);
+    wrap.appendChild(card);
+    return wrap;
+  }
+
+  const b = activeBooking;
+  const statusLabels = {dispatched:'Assigned', en_route:'En route', in_progress:'In progress', completed:'Completed'};
+  const statusClass = {dispatched:'dispatched', en_route:'enroute', in_progress:'progress', completed:'done'};
+
+  const card = el('div','card');
+  card.appendChild(el('span',`badge ${statusClass[b.status]}`, statusLabels[b.status]||b.status));
+  card.appendChild(el('div','job-title', b.job_type_name));
+  card.appendChild(el('div','job-sub', `Ref ${b.id}`));
+
+  const rows = el('div',''); rows.style.marginTop='14px';
+  rows.innerHTML = `
+    <div class="job-row"><span class="k">Customer</span><span class="v">${b.customer_name}</span></div>
+    <div class="job-row"><span class="k">Phone</span><span class="v">${b.customer_phone}</span></div>
+    <div class="job-row"><span class="k">Address</span><span class="v">${b.address_label||'—'}</span></div>
+    <div class="job-row"><span class="k">Job value</span><span class="v">${fmtGBP(b.total)}</span></div>
+  `;
+  card.appendChild(rows);
+
+  if(b.status==='dispatched' || b.status==='en_route'){
+    const pill = el('div','gps-pill');
+    pill.innerHTML = `<span class="gps-dot"></span> ${sharingLocation ? 'Sharing your live location with the customer' : 'Location sharing is off'}`;
+    card.appendChild(pill);
+    const toggle = el('button','btn '+(sharingLocation?'btn-danger':'btn-outline'), sharingLocation? 'Stop sharing location' : '📍 Start sharing location');
+    toggle.onclick = ()=>{ sharingLocation ? stopSharingLocation() : startSharingLocation(b.id); render(); };
+    card.appendChild(toggle);
+  }
+
+  const actions = el('div','action-stack');
+  if(b.status==='dispatched'){
+    const btn = el('button','btn btn-primary','🚐 Start driving'); btn.onclick=()=>advance(b.id,'en_route'); actions.appendChild(btn);
+  } else if(b.status==='en_route'){
+    const btn = el('button','btn btn-primary','📍 Mark arrived'); btn.onclick=()=>advance(b.id,'in_progress'); actions.appendChild(btn);
+  } else if(b.status==='in_progress'){
+    const btn = el('button','btn btn-primary','✅ Finish job'); btn.onclick=()=>advance(b.id,'completed'); actions.appendChild(btn);
+  }
+  card.appendChild(actions);
+  wrap.appendChild(card);
+
+  const chatCard = el('div','card');
+  chatCard.appendChild(el('h3','','Message customer'));
+  const win = el('div','chat-window'); win.id='chatWin';
+  chat.forEach(m=>{
+    const msg = el('div','msg '+(m.sender==='engineer'?'me':'them'));
+    msg.textContent = m.body;
+    win.appendChild(msg);
+  });
+  chatCard.appendChild(win);
+  const row = el('div','chat-row');
+  const input = el('input'); input.type='text'; input.placeholder='Type a message…';
+  const send = el('button','btn btn-primary','Send');
+  const doSend = async ()=>{
+    if(!input.value.trim()) return;
+    const body = input.value.trim(); input.value='';
+    try{
+      const msg = await api(`/api/bookings/${b.id}/messages`, {method:'POST', body: JSON.stringify({sender:'engineer', body})});
+      chat.push(msg); render();
+      setTimeout(()=>{ const w=document.getElementById('chatWin'); if(w) w.scrollTop=w.scrollHeight; },0);
+    }catch(e){ alert(e.message); }
+  };
+  send.onclick = doSend;
+  input.onkeydown = e=>{ if(e.key==='Enter') doSend(); };
+  row.appendChild(input); row.appendChild(send);
+  chatCard.appendChild(row);
+  wrap.appendChild(chatCard);
+  setTimeout(()=>{ const w=document.getElementById('chatWin'); if(w) w.scrollTop=w.scrollHeight; },0);
+
+  return wrap;
+}
+
+async function advance(bookingId, status){
+  try{
+    const updated = await api(`/api/bookings/${bookingId}/status`, {method:'PATCH', body: JSON.stringify({status})});
+    activeBooking = updated;
+    if(status==='completed'){ stopSharingLocation(); await loadMyBookings(); }
+    render();
+  }catch(e){ alert(e.message); }
+}
+
+function startSharingLocation(bookingId){
+  if(!navigator.geolocation){ alert('Geolocation not supported in this browser.'); return; }
+  sharingLocation = true;
+  const push = (lat, lng)=>{
+    api(`/api/bookings/${bookingId}/location`, {method:'POST', body: JSON.stringify({lat, lng})}).catch(()=>{});
+  };
+  watchId = navigator.geolocation.watchPosition(
+    pos => push(pos.coords.latitude, pos.coords.longitude),
+    err => console.warn('GPS error', err),
+    {enableHighAccuracy:true, maximumAge:5000, timeout:8000}
+  );
+}
+function stopSharingLocation(){
+  sharingLocation = false;
+  if(watchId!=null && navigator.geolocation){ navigator.geolocation.clearWatch(watchId); watchId=null; }
+}
+
+render();
+</script>
+</body>
+</html>

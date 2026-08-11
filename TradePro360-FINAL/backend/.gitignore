@@ -1,0 +1,7 @@
+node_modules/
+tradepro360.db
+tradepro360.db-shm
+tradepro360.db-wal
+.env
+.env.production
+uploads/
