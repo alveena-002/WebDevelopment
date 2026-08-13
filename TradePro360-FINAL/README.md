@@ -271,9 +271,9 @@ seconds), and chat with the customer. It talks to this same API — open it
 alongside `TradePro360.html` and a booking made in one shows up live in the
 other over the shared WebSocket.
 
+## Connecting the front-end app
 
-
-`TradePro360.html` now auto-connects to this API. Open the HTML file with
+`TradePro360.html` auto-connects to this API. Open the HTML file with
 this backend running (`npm start`), and the dark banner at the top of the
 page will turn green: "Connected to live backend." From that point on,
 booking, dispatch, chat, photos, ratings, invoices and payments all go
@@ -284,3 +284,45 @@ automatically — nothing breaks either way.
 If you're running the API somewhere other than `localhost:4000` (e.g. after
 deploying it), paste that URL into the "API base" field in the banner and
 click Reconnect.
+
+
+
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 49 15 AM" src="https://github.com/user-attachments/assets/fbcad091-439b-48d1-853e-2cc90bcbdab5" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 53 40 AM" src="https://github.com/user-attachments/assets/20622ed4-f8be-49a6-8dac-15ddc39c9b5f" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 51 01 AM" src="https://github.com/user-attachments/assets/d4310d04-02da-4c85-80d7-916ed9d14a33" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 50 40 AM" src="https://github.com/user-attachments/assets/ba024bf1-14b2-4e2e-895a-3a454fb2a17c" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 50 26 AM" src="https://github.com/user-attachments/assets/110d100c-9bb2-4966-b786-bc6bb0095e29" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 59 53 AM" src="https://github.com/user-attachments/assets/2129a90b-6e1d-4591-a079-8191ecae4c9d" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 3 00 08 AM" src="https://github.com/user-attachments/assets/62eeb148-3d1a-4b3e-99fd-02aab87ca86d" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 3 00 44 AM" src="https://github.com/user-attachments/assets/c2e06b44-40bd-4f72-b4f4-ec543b22b048" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 3 02 42 AM" src="https://github.com/user-attachments/assets/5795762f-b138-41a2-9f5f-c1290cd2a8a1" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 3 04 38 AM" src="https://github.com/user-attachments/assets/a9e82959-c2c8-4b6e-b259-891805f048aa" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 3 06 37 AM" src="https://github.com/user-attachments/assets/85c75d08-7f40-4ca4-8445-d5ee29b4a97c" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 3 10 55 AM" src="https://github.com/user-attachments/assets/bbb4e0ae-6c50-45a2-b735-ac452ff80510" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 4 02 08 AM" src="https://github.com/user-attachments/assets/ddfa8ece-c5c3-4900-9edd-bb8760f0b573" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 4 02 26 AM" src="https://github.com/user-attachments/assets/047d4433-3032-426d-8d68-b238cde797c5" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 56 48 AM" src="https://github.com/user-attachments/assets/6fc3c533-3e4e-48f9-8985-08dee39508e7" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 58 47 AM" src="https://github.com/user-attachments/assets/57acc546-d4b7-4115-a6d2-66b72f66b54f" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 59 01 AM" src="https://github.com/user-attachments/assets/4acc4750-0d4c-4c1f-8028-a37837026647" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 59 32 AM" src="https://github.com/user-attachments/assets/4374895e-0bcc-4ee6-bec3-34d43f79595f" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 3 00 44 AM" src="https://github.com/user-attachments/assets/71af0184-647c-494a-b764-9e86e3ad0751" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 3 01 01 AM" src="https://github.com/user-attachments/assets/27957827-db22-4bc8-86ef-9f6551cd1399" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 3 01 25 AM" src="https://github.com/user-attachments/assets/67463740-ac43-4559-9b23-05af68c12618" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 3 02 16 AM" src="https://github.com/user-attachments/assets/8fbeb479-302f-4fc6-bdec-23c3122b1cef" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 3 06 37 AM" src="https://github.com/user-attachments/assets/61533167-48da-4c6d-b200-b42250f9afaf" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 3 06 37 AM (1)" src="https://github.com/user-attachments/assets/a5a8b7f1-f54f-4d9c-848c-48c16a098988" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 3 06 55 AM" src="https://github.com/user-attachments/assets/ddee66c2-e732-4d2e-b785-11049e6f95a9" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 3 10 38 AM" src="https://github.com/user-attachments/assets/4df5240a-184c-46d6-906d-6331b75353e7" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 4 02 26 AM" src="https://github.com/user-attachments/assets/44c452d4-996a-45b7-a7f0-3f937f8acf80" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 4 02 56 AM" src="https://github.com/user-attachments/assets/cd8ae8da-cbb4-4d74-81ca-78de832eeb24" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 4 03 11 AM" src="https://github.com/user-attachments/assets/a947cb7b-3edf-4190-a3e4-b7ec0ff1a0d4" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 4 03 21 AM" src="https://github.com/user-attachments/assets/65fba1c7-c00c-4750-bc52-efbda80c02fc" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 56 24 AM" src="https://github.com/user-attachments/assets/f85a5513-a8c1-4d61-887f-f97f358cfaec" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 55 53 AM" src="https://github.com/user-attachments/assets/b61679c5-d6e1-48a1-bdc3-f092642ed37d" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 55 23 AM" src="https://github.com/user-attachments/assets/7a1f3383-570a-4515-95d7-e2623d3b7d26" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 55 08 AM" src="https://github.com/user-attachments/assets/a1c07db7-77e1-4479-9771-f5c4e2ab68ee" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 54 53 AM" src="https://github.com/user-attachments/assets/a3422691-b4c5-4482-ae36-4672a8df5af2" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 54 39 AM" src="https://github.com/user-attachments/assets/6cf99d88-6f81-4bb3-b66e-98f09e32bcdd" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 54 21 AM" src="https://github.com/user-attachments/assets/1279b556-f879-464d-a18f-cf452bed1d23" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 54 21 AM" src="https://github.com/user-attachments/assets/baf0ad17-701f-4632-8b01-7762af4ee4e0" />
+<img width="1366" height="728" alt="WhatsApp Image 2026-08-11 at 2 53 57 AM" src="https://github.com/user-attachments/assets/040d65d3-07a9-4ba9-a988-2705bd45cc6c" />
