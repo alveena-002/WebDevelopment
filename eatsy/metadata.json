@@ -1,0 +1,6 @@
+{
+  "name": "Eatsy",
+  "description": "Eatsy – UK High-Street Restaurant Management System for QR Table Ordering, Dynamic Stock Control, Smart Loyalty Rewards & Multi-language Analytics",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
