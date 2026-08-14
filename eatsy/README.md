@@ -1,3 +1,4 @@
+
 # Eatsy — UK High-Street Restaurant Management System
 
 Eatsy is a full-stack restaurant ordering and management platform built for UK high-street restaurants. It combines **QR-code table ordering**, **real-time kitchen operations**, **dynamic stock control**, **smart loyalty rewards**, and **multi-language analytics** in a single application.
@@ -103,3 +104,22 @@ eatsy/
 
 - Without a valid `GEMINI_API_KEY`, all features will work **except** the AI-generated offers.
 - `.env.example` is a template only — never commit your real `.env.local` file (it's already git-ignored).
+
+
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/c91aedb4-be9f-43c5-b265-ac7ae14e9122" />
+<img width="1366" height="728" alt="image (1)" src="https://github.com/user-attachments/assets/bee90937-6e97-4c55-8b1e-ef933accf3b3" />
+<img width="1366" height="728" alt="image (2)" src="https://github.com/user-attachments/assets/ab1c47d3-66e8-40a5-a746-3a69691ca206" />
+<img width="1366" height="728" alt="image (3)" src="https://github.com/user-attachments/assets/110b5cbe-b8b6-44d7-81b5-33a7a4a9c698" />
+<img width="1366" height="728" alt="image (4)" src="https://github.com/user-attachments/assets/a4454f36-1237-487a-b013-348e8e944888" />
+<img width="1366" height="728" alt="image (5)" src="https://github.com/user-attachments/assets/95a31da6-e9b7-4229-912b-eecbe250fd32" />
+<img width="1366" height="728" alt="image (6)" src="https://github.com/user-attachments/assets/463afcd9-8025-4f60-82e2-ecdd40cc6c9a" />
+<img width="1366" height="728" alt="image (7)" src="https://github.com/user-attachments/assets/dfebccff-cf67-4970-bdcb-31b2f5847a5a" />
+<img width="1366" height="728" alt="image (8)" src="https://github.com/user-attachments/assets/5cd3aab1-77bb-49a0-b4eb-95646733c61a" />
+<img width="1366" height="728" alt="image (9)" src="https://github.com/user-attachments/assets/7381b4dd-d32e-4b66-8d8d-3d88b63b6c4d" />
+<img width="1366" height="728" alt="image (10)" src="https://github.com/user-attachments/assets/39fbac65-5c0b-40de-beb0-882c4961ac11" />
+<img width="1366" height="728" alt="image (11)" src="https://github.com/user-attachments/assets/9d98c34f-aac4-432a-8b75-0265d0789e3d" />
+<img width="1366" height="728" alt="image (12)" src="https://github.com/user-attachments/assets/f6121a8e-0164-46e7-9b01-f53edad6d483" />
+<img width="1366" height="728" alt="image (13)" src="https://github.com/user-attachments/assets/22e94e61-90ce-45a0-bd64-c2d2a48e6246" />
+<img width="1366" height="728" alt="image (14)" src="https://github.com/user-attachments/assets/c21c8453-61f7-4057-b4f8-47aa4374a636" />
+<img width="1366" height="728" alt="image (15)" src="https://github.com/user-attachments/assets/f2b2b541-0c27-40fc-a08b-3493d777a058" />
+<img width="1366" height="728" alt="image (16)" src="https://github.com/user-attachments/assets/f948db23-4a21-442f-b956-5fb009a294f4" />
