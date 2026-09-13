@@ -51,3 +51,11 @@ client/    → React frontend (src, public, index.html)
 server/    → Express backend entry (index.ts)
 shared/    → Code shared between client and server
 ```
+<img width="1366" height="728" alt="image" src="https://github.com/user-attachments/assets/43d6f097-6ac8-4b85-9315-09ac5197ea97" />
+<img width="1366" height="728" alt="image (1)" src="https://github.com/user-attachments/assets/ba4e9deb-3890-43e7-a8ca-9708cee68052" />
+<img width="1366" height="728" alt="image (2)" src="https://github.com/user-attachments/assets/49cde178-9ba3-4119-bce9-413ea5063fcd" />
+<img width="1366" height="728" alt="image (3)" src="https://github.com/user-attachments/assets/99c490aa-6da7-47b6-b03a-4409fdfd656a" />
+<img width="1366" height="728" alt="image (4)" src="https://github.com/user-attachments/assets/c00f813b-485e-4266-b140-e85f5166b427" />
+<img width="1366" height="728" alt="image (5)" src="https://github.com/user-attachments/assets/ff84b2be-f211-4062-ac1f-e83646270677" />
+<img width="1366" height="728" alt="image (6)" src="https://github.com/user-attachments/assets/4dff159f-49f6-4e45-b60b-5618b0b902b4" />
+
