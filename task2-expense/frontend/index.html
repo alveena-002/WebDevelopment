@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Expense Tracker</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; background: #f8fafc; color: #1e293b; }
+  .container { max-width: 900px; margin: 0 auto; padding: 32px 20px; }
+  h1 { font-size: 24px; font-weight: 600; margin-bottom: 4px; }
+  .subtitle { color: #64748b; font-size: 14px; margin-bottom: 24px; }
+  .total-card { background: #0f172a; color: white; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+  .total-label { font-size: 13px; opacity: 0.7; }
+  .total-value { font-size: 32px; font-weight: 700; margin-top: 4px; }
+  .category-bars { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .category-row { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+  .category-name { width: 100px; text-transform: capitalize; opacity: 0.9; }
+  .bar-track { flex: 1; background: rgba(255,255,255,0.15); border-radius: 4px; height: 8px; overflow: hidden; }
+  .bar-fill { background: #38bdf8; height: 100%; }
+  .category-amount { width: 70px; text-align: right; font-weight: 600; }
+  .form-card, .filters, .expense-list { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+  .form-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+  input, select { border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px 10px; font-size: 14px; font-family: inherit; }
+  input[type=text] { flex: 1; min-width: 160px; }
+  button { background: #0f172a; color: white; border: none; border-radius: 6px; padding: 8px 16px; font-size: 14px; font-weight: 500; cursor: pointer; }
+  button:hover { background: #1e293b; }
+  button.danger { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+  .expense-item { border-bottom: 1px solid #f1f5f9; padding: 12px 0; display: flex; justify-content: space-between; align-items: center; }
+  .expense-item:last-child { border-bottom: none; }
+  .expense-title { font-weight: 600; font-size: 14px; }
+  .expense-meta { color: #64748b; font-size: 12px; margin-top: 2px; }
+  .expense-amount { font-weight: 700; font-size: 16px; }
+  .badge { font-size: 11px; padding: 2px 8px; border-radius: 999px; background: #f1f5f9; color: #475569; text-transform: capitalize; }
+  .error { color: #dc2626; font-size: 13px; margin-top: 6px; }
+  .empty { text-align: center; color: #94a3b8; padding: 30px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Expense Tracker</h1>
+  <p class="subtitle">Full-stack expense tracker — Node.js/Express + SQLite backend, vanilla JS frontend.</p>
+
+  <div class="total-card" id="totalCard"></div>
+
+  <div class="form-card">
+    <h3 style="margin-bottom: 12px; font-size: 14px;">Add Expense</h3>
+    <form id="expenseForm">
+      <div class="form-row">
+        <input type="text" id="title" placeholder="What did you spend on?" required />
+        <input type="number" id="amount" placeholder="Amount" step="0.01" min="0.01" required style="width:120px;" />
+        <select id="category">
+          <option value="food">Food</option>
+          <option value="transport">Transport</option>
+          <option value="utilities">Utilities</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="education">Education</option>
+          <option value="health">Health</option>
+          <option value="other">Other</option>
+        </select>
+        <input type="date" id="expense_date" required />
+      </div>
+      <div class="form-row">
+        <input type="text" id="notes" placeholder="Notes (optional)" />
+      </div>
+      <button type="submit">Add Expense</button>
+      <div class="error" id="formError"></div>
+    </form>
+  </div>
+
+  <div class="filters">
+    <div class="form-row" style="margin-bottom:0;">
+      <input type="text" id="search" placeholder="Search expenses..." />
+      <select id="filterCategory">
+        <option value="">All Categories</option>
+        <option value="food">Food</option>
+        <option value="transport">Transport</option>
+        <option value="utilities">Utilities</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="education">Education</option>
+        <option value="health">Health</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="expense-list" id="expenseList"></div>
+</div>
+
+<script>
+const API = "http://localhost:5001/api";
+const CATEGORY_COLORS = { food: "#38bdf8", transport: "#a78bfa", utilities: "#fbbf24", entertainment: "#f472b6", education: "#34d399", health: "#fb7185", other: "#94a3b8" };
+
+async function loadSummary() {
+  const res = await fetch(`${API}/summary`);
+  const summary = await res.json();
+
+  const maxTotal = Math.max(...summary.byCategory.map(c => c.total), 1);
+
+  document.getElementById("totalCard").innerHTML = `
+    <div class="total-label">Total Spent</div>
+    <div class="total-value">$${summary.grandTotal.toFixed(2)}</div>
+    <div class="category-bars">
+      ${summary.byCategory.map(c => `
+        <div class="category-row">
+          <div class="category-name">${c.category}</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${(c.total / maxTotal) * 100}%; background:${CATEGORY_COLORS[c.category] || '#38bdf8'};"></div></div>
+          <div class="category-amount">$${c.total.toFixed(2)}</div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+async function loadExpenses() {
+  const q = document.getElementById("search").value;
+  const category = document.getElementById("filterCategory").value;
+
+  const params = new URLSearchParams();
+  if (q) params.set("q", q);
+  if (category) params.set("category", category);
+
+  const res = await fetch(`${API}/expenses?${params}`);
+  const expenses = await res.json();
+
+  const list = document.getElementById("expenseList");
+  if (expenses.length === 0) {
+    list.innerHTML = `<div class="empty">No expenses found.</div>`;
+    return;
+  }
+
+  list.innerHTML = expenses.map(e => `
+    <div class="expense-item">
+      <div>
+        <div class="expense-title">${escapeHtml(e.title)}</div>
+        <div class="expense-meta">
+          <span class="badge">${e.category}</span>
+          &nbsp;${e.expense_date}${e.notes ? " · " + escapeHtml(e.notes) : ""}
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div class="expense-amount">$${e.amount.toFixed(2)}</div>
+        <button class="danger" onclick="deleteExpense(${e.id})">Delete</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+document.getElementById("expenseForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const errorEl = document.getElementById("formError");
+  errorEl.textContent = "";
+
+  const body = {
+    title: document.getElementById("title").value,
+    amount: document.getElementById("amount").value,
+    category: document.getElementById("category").value,
+    expense_date: document.getElementById("expense_date").value,
+    notes: document.getElementById("notes").value,
+  };
+
+  const res = await fetch(`${API}/expenses`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    const data = await res.json();
+    errorEl.textContent = (data.errors || [data.error]).join(" ");
+    return;
+  }
+
+  e.target.reset();
+  loadExpenses();
+  loadSummary();
+});
+
+async function deleteExpense(id) {
+  if (!confirm("Delete this expense?")) return;
+  await fetch(`${API}/expenses/${id}`, { method: "DELETE" });
+  loadExpenses();
+  loadSummary();
+}
+
+document.getElementById("search").addEventListener("input", loadExpenses);
+document.getElementById("filterCategory").addEventListener("change", loadExpenses);
+
+loadSummary();
+loadExpenses();
+</script>
+</body>
+</html>
