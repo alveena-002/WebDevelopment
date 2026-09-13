@@ -1,0 +1,6 @@
+{
+  "name": "Hotel Owner Registration & Approval Platform",
+  "description": "Comprehensive hotel owner onboarding, verification & approval workflow with multi-tenant dashboards, room & booking management, cleaning team dispatch, and guest reservation portal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
