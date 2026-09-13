@@ -1,0 +1,15 @@
+{
+  "name": "snake-full-stack",
+  "version": "1.0.0",
+  "description": "Full-stack Snake game with Node/Express backend and SQLite high-score database",
+  "main": "server.js",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

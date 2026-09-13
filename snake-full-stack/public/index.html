@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snake Game — Full Stack</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="wrapper">
+    <h1>🐍 Snake Game</h1>
+    <p class="subtitle">Full-Stack Edition — Node.js + Express + SQLite</p>
+
+    <div class="game-area">
+      <div class="hud">
+        <div class="hud-item">Score: <span id="score">0</span></div>
+        <div class="hud-item">Best (this session): <span id="bestSession">0</span></div>
+      </div>
+
+      <div class="canvas-container">
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+
+        <!-- Start overlay -->
+        <div id="startOverlay" class="overlay">
+          <h2>Ready to Play?</h2>
+          <p>Use Arrow Keys or WASD to move</p>
+          <button id="startBtn">Start Game</button>
+        </div>
+
+        <!-- Game over overlay -->
+        <div id="gameOverOverlay" class="overlay hidden">
+          <h2>Game Over!</h2>
+          <p>Your score: <span id="finalScore">0</span></p>
+          <input type="text" id="playerName" placeholder="Enter your name" maxlength="20">
+          <button id="saveScoreBtn">Save Score</button>
+          <button id="restartBtn">Play Again</button>
+          <p id="saveStatus"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="leaderboard">
+      <h2>🏆 High Scores</h2>
+      <ol id="leaderboardList">
+        <li class="loading">Loading...</li>
+      </ol>
+      <button id="refreshBtn">Refresh Leaderboard</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
