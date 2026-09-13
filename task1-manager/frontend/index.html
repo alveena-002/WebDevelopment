@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Task Manager</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; background: #f8fafc; color: #1e293b; }
+  .container { max-width: 900px; margin: 0 auto; padding: 32px 20px; }
+  h1 { font-size: 24px; font-weight: 600; margin-bottom: 4px; }
+  .subtitle { color: #64748b; font-size: 14px; margin-bottom: 24px; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+  .stat-card { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; }
+  .stat-label { font-size: 12px; color: #64748b; }
+  .stat-value { font-size: 24px; font-weight: 600; margin-top: 4px; }
+  .form-card, .filters, .task-list { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+  .form-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+  input, select, textarea { border: 1px solid #cbd5e1; border-radius: 6px; padding: 8px 10px; font-size: 14px; font-family: inherit; }
+  input[type=text], textarea { flex: 1; min-width: 180px; }
+  textarea { resize: vertical; min-height: 60px; }
+  button { background: #0f172a; color: white; border: none; border-radius: 6px; padding: 8px 16px; font-size: 14px; font-weight: 500; cursor: pointer; }
+  button:hover { background: #1e293b; }
+  button.secondary { background: white; color: #334155; border: 1px solid #cbd5e1; }
+  button.danger { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+  .task-item { border-bottom: 1px solid #f1f5f9; padding: 14px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .task-item:last-child { border-bottom: none; }
+  .task-title { font-weight: 600; font-size: 15px; }
+  .task-desc { color: #64748b; font-size: 13px; margin-top: 2px; }
+  .task-meta { display: flex; gap: 8px; margin-top: 6px; }
+  .badge { font-size: 11px; padding: 2px 8px; border-radius: 999px; font-weight: 500; }
+  .priority-high { background: #fee2e2; color: #b91c1c; }
+  .priority-medium { background: #fef3c7; color: #b45309; }
+  .priority-low { background: #dbeafe; color: #1d4ed8; }
+  .status-pending { background: #f1f5f9; color: #475569; }
+  .status-in_progress { background: #fef3c7; color: #b45309; }
+  .status-completed { background: #dcfce7; color: #15803d; }
+  .task-actions { display: flex; gap: 6px; }
+  .empty { text-align: center; color: #94a3b8; padding: 30px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Task Manager</h1>
+  <p class="subtitle">Full-stack task manager — Node.js/Express + SQLite backend, vanilla JS frontend.</p>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="form-card">
+    <h3 style="margin-bottom: 12px; font-size: 14px;">Add New Task</h3>
+    <form id="taskForm">
+      <div class="form-row">
+        <input type="text" id="title" placeholder="Task title" required />
+        <select id="priority">
+          <option value="low">Low Priority</option>
+          <option value="medium" selected>Medium Priority</option>
+          <option value="high">High Priority</option>
+        </select>
+        <input type="date" id="due_date" />
+      </div>
+      <div class="form-row">
+        <textarea id="description" placeholder="Description (optional)"></textarea>
+      </div>
+      <button type="submit">Add Task</button>
+    </form>
+  </div>
+
+  <div class="filters">
+    <div class="form-row" style="margin-bottom:0;">
+      <input type="text" id="search" placeholder="Search tasks..." />
+      <select id="filterStatus">
+        <option value="">All Status</option>
+        <option value="pending">Pending</option>
+        <option value="in_progress">In Progress</option>
+        <option value="completed">Completed</option>
+      </select>
+      <select id="filterPriority">
+        <option value="">All Priority</option>
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="task-list" id="taskList"></div>
+</div>
+
+<script>
+const API = "http://localhost:5000/api";
+
+async function loadStats() {
+  const res = await fetch(`${API}/stats`);
+  const stats = await res.json();
+  document.getElementById("stats").innerHTML = `
+    <div class="stat-card"><div class="stat-label">Total</div><div class="stat-value">${stats.total}</div></div>
+    <div class="stat-card"><div class="stat-label">Pending</div><div class="stat-value">${stats.pending}</div></div>
+    <div class="stat-card"><div class="stat-label">In Progress</div><div class="stat-value">${stats.inProgress}</div></div>
+    <div class="stat-card"><div class="stat-label">Completed</div><div class="stat-value">${stats.completed}</div></div>
+  `;
+}
+
+async function loadTasks() {
+  const q = document.getElementById("search").value;
+  const status = document.getElementById("filterStatus").value;
+  const priority = document.getElementById("filterPriority").value;
+
+  const params = new URLSearchParams();
+  if (q) params.set("q", q);
+  if (status) params.set("status", status);
+  if (priority) params.set("priority", priority);
+
+  const res = await fetch(`${API}/tasks?${params}`);
+  const tasks = await res.json();
+
+  const list = document.getElementById("taskList");
+  if (tasks.length === 0) {
+    list.innerHTML = `<div class="empty">No tasks found.</div>`;
+    return;
+  }
+
+  list.innerHTML = tasks.map(t => `
+    <div class="task-item">
+      <div>
+        <div class="task-title">${escapeHtml(t.title)}</div>
+        ${t.description ? `<div class="task-desc">${escapeHtml(t.description)}</div>` : ""}
+        <div class="task-meta">
+          <span class="badge priority-${t.priority}">${t.priority}</span>
+          <span class="badge status-${t.status}">${t.status.replace("_", " ")}</span>
+          ${t.due_date ? `<span class="badge" style="background:#f1f5f9;color:#475569;">Due: ${t.due_date}</span>` : ""}
+        </div>
+      </div>
+      <div class="task-actions">
+        <select onchange="updateStatus(${t.id}, this.value)" style="font-size:12px;">
+          <option value="pending" ${t.status === "pending" ? "selected" : ""}>Pending</option>
+          <option value="in_progress" ${t.status === "in_progress" ? "selected" : ""}>In Progress</option>
+          <option value="completed" ${t.status === "completed" ? "selected" : ""}>Completed</option>
+        </select>
+        <button class="danger" onclick="deleteTask(${t.id})">Delete</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+function escapeHtml(str) {
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+document.getElementById("taskForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const title = document.getElementById("title").value;
+  const description = document.getElementById("description").value;
+  const priority = document.getElementById("priority").value;
+  const due_date = document.getElementById("due_date").value;
+
+  await fetch(`${API}/tasks`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title, description, priority, due_date }),
+  });
+
+  e.target.reset();
+  loadTasks();
+  loadStats();
+});
+
+async function updateStatus(id, status) {
+  await fetch(`${API}/tasks/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ status }),
+  });
+  loadTasks();
+  loadStats();
+}
+
+async function deleteTask(id) {
+  if (!confirm("Delete this task?")) return;
+  await fetch(`${API}/tasks/${id}`, { method: "DELETE" });
+  loadTasks();
+  loadStats();
+}
+
+document.getElementById("search").addEventListener("input", loadTasks);
+document.getElementById("filterStatus").addEventListener("change", loadTasks);
+document.getElementById("filterPriority").addEventListener("change", loadTasks);
+
+loadStats();
+loadTasks();
+</script>
+</body>
+</html>
