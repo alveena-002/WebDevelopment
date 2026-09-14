@@ -71,3 +71,5 @@ first time the server runs — no manual database setup needed.
 - **"Cannot find module 'node:sqlite'" or similar error:** Your Node.js
   version is older than 22.5. Update Node from https://nodejs.org
   (LTS version) and try again.
+<img width="1366" height="686" alt="image (2)" src="https://github.com/user-attachments/assets/49b2ab9b-7d48-41a6-a204-e6e4b81e3774" />
+<img width="1366" height="686" alt="image (3)" src="https://github.com/user-attachments/assets/0ec56926-dc51-4f35-aaf3-25fc332032ca" />
