@@ -61,3 +61,5 @@ task2-expense/
 └── frontend/
     └── index.html       # Full UI with category breakdown chart
 ```
+<img width="1366" height="694" alt="image" src="https://github.com/user-attachments/assets/9f699a0a-cb62-46a7-bf4f-ebb85ff8a7cf" />
+<img width="1366" height="677" alt="image (1)" src="https://github.com/user-attachments/assets/ac97073b-3d3a-4e12-b182-9caa02beb355" />
